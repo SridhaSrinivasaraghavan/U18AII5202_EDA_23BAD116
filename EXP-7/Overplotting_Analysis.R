@@ -1,0 +1,18 @@
+print("Sridha Srinivasaraghavan - 23BAD116")
+
+library(ggplot2)
+library(dplyr)
+
+social_data <- read.csv("D:/EDA/lab/EXP-7/social_media_interactions.csv")
+
+colnames(social_data)
+
+social_data <- social_data %>% filter(!is.na(Likes), !is.na(Comments), !is.na(Shares))
+
+ggplot(social_data, aes(x = Likes, y = Comments)) + geom_point() + labs(title = "Original Visualization of User Interactions", x = "Likes", y = "Comments") + theme_minimal()
+
+ggplot(social_data, aes(x = Likes, y = Comments)) + geom_point(alpha = 0.2) + labs(title = "Alpha Blending Applied", x = "Likes", y = "Comments") + theme_minimal()
+
+ggplot(social_data, aes(x = Likes, y = Comments)) + geom_jitter(width = 30, height = 30, alpha = 0.3) + labs(title = "Jittering Technique Applied", x = "Likes", y = "Comments") + theme_minimal()
+
+ggplot(social_data, aes(x = Likes, y = Comments)) + stat_bin2d(bins = 30) + labs(title = "Aggregation and Binning Applied", x = "Likes", y = "Comments") + theme_minimal()
